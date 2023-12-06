@@ -1,0 +1,14 @@
+.userInfo {
+  border: 1Px solid green;
+  font-size: 16px;
+}
+
+.userDate {
+  color: purple;
+  font-weight: 700;
+
+}
+
+.userDate ul {
+  list-style-type: none;
+}
