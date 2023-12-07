@@ -2,7 +2,6 @@ import { useState } from 'react';
 import  styles from './styles.module.css'
 import InputComponent from '../InputComponent/InputComponent';
 
-import { contextInput } from '../../contexts/context';
 // import {v4 as uuidv4} from 'uuid'
 const {classForm}=styles;
 const initState= {
@@ -14,6 +13,7 @@ phone:""
 }
 const UserForm = ({addUser}) => {
 const [formInputs,setFormInputs]=useState(initState)
+
 // const focusInput= useRef("Kamel");
 const inputHandler = (event)=>{
   const key=event.target.name;
@@ -33,41 +33,34 @@ const formHandler = (event)=>{
   
 <form className={classForm}  onSubmit={formHandler}>
     <label htmlFor="name">Name</label>
-    <contextInput.Provider value={{
-          InputValue: formInputs.name,
-          inputhandleValue: {inputHandler},
-      }}>
-              <InputComponent/>
-      </contextInput.Provider>
+    
+              <InputComponent value={formInputs.name}
+              inputHandler={inputHandler}
+              />
+    
     {/* <input type="text"  name="name" value={formInputs.name} onChange={(e)=>{inputHandler(e)}}/> */}
 
     <label htmlFor="age">Age</label>
-    <contextInput.Provider value={{
-          InputValue: formInputs.age,
-          inputhandleValue: {inputHandler},
-      }}>
-              <InputComponent/>
-      </contextInput.Provider>
+
+    <InputComponent value={formInputs.age}
+              inputHandler={inputHandler}
+              />
     {/* <input type="text"  name="age" value={formInputs.age} onChange={(e)=>{(inputHandler(e))}}/> */}
 
     <label htmlFor="location">Location</label>
 
-    <contextInput.Provider value={{
-          InputValue: formInputs.location,
-          inputhandleValue: {inputHandler},
-      }}>
-              <InputComponent/>
-      </contextInput.Provider>
+          <InputComponent value={formInputs.location}
+            onchange={inputHandler}
+              />
     {/* <input type="text"  name="location" value={formInputs.location} onChange={(e)=>{(inputHandler(e))}}/> */}
 
     <label htmlFor="phone">Phone</label>
-    <contextInput.Provider value={{
-          InputValue: formInputs.phone,
-          inputhandleValue: {inputHandler},
-      }}>
-              <InputComponent/>
-      </contextInput.Provider>
+  
+    <InputComponent value={formInputs.phone}
+              inputHandler={inputHandler}
+              />
     
+  
     {/* <input type="text" name="phone" value= {formInputs.phone}  onChange={(e)=>{(inputHandler(e))}}/> */}
     {/* <label htmlFor="test">Test</label>
     
@@ -76,8 +69,6 @@ const formHandler = (event)=>{
 
 </form>
   
-  
   )
 }
-
 export default UserForm;
